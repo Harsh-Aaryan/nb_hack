@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — WARDROBE PAGE
+// NEW BALANCE - WARDROBE PAGE
 // ═══════════════════════════════════════════════════
 
 function renderWardrobe() {
@@ -53,7 +53,7 @@ function renderWardrobe() {
         <h2 class="section-header__title reveal">AI Wardrobe Analysis</h2>
         <div class="wardrobe-giveback reveal" style="background: linear-gradient(135deg, var(--color-navy) 0%, #2A4F80 100%); margin-top: var(--space-4);">
           <h2 class="wardrobe-giveback__title" style="display: flex; align-items: center; gap: 8px;">✨ AI Agent Insights</h2>
-          <p class="wardrobe-giveback__text">Our AI agent has analyzed your rotation. You have strong coverage in Heritage and Lifestyle models, but lack a dedicated Performance silhouette for training. Should the AI automatically scout for the best deals on Performance runners matching your aesthetic?</p>
+          <p class="wardrobe-giveback__text">Our AI agent has analyzed your rotation. You have strong coverage in Classics and Lifestyle models, but lack a dedicated Performance silhouette for training. Should the AI automatically scout for the best deals on Performance runners matching your aesthetic?</p>
           <button class="btn btn-outline" style="background: white; color: var(--color-navy);" onclick="showToast('AI Agent dispatched to scan inventory')">Activate Scout Agent</button>
         </div>
       </section>

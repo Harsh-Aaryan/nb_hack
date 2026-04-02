@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — COMMUNITY STORIES DATA
+// NEW BALANCE - COMMUNITY STORIES DATA
 // Philanthropy & impact narratives
 // ═══════════════════════════════════════════════════
 
@@ -70,7 +70,7 @@ const USER_DATA = {
   initials: 'AM',
   memberSince: 'March 2024',
   impactScore: 78,
-  styleProfile: ['Heritage Runner', 'Earth Tones', 'Minimalist', 'American Made', 'Sustainable'],
+  styleProfile: ['Retro runner', 'Earth tones', 'Minimalist', 'American made', 'Sustainable'],
   stats: {
     totalPairs: 6,
     totalWears: 142,
@@ -80,17 +80,17 @@ const USER_DATA = {
   },
   wardrobe: ['nb-990v5', 'nb-574', 'nb-1300', 'nb-550'],
   wardrobeDetails: [
-    { productId: 'nb-990v5', wears: 48, lastWorn: '2025-12-28', tags: ['daily', 'running', 'heritage'] },
+    { productId: 'nb-990v5', wears: 48, lastWorn: '2025-12-28', tags: ['daily', 'running', 'classics'] },
     { productId: 'nb-574', wears: 35, lastWorn: '2025-12-25', tags: ['casual', 'weekend'] },
-    { productId: 'nb-1300', wears: 22, lastWorn: '2025-12-20', tags: ['special occasion', 'heritage'] },
+    { productId: 'nb-1300', wears: 22, lastWorn: '2025-12-20', tags: ['special occasion', 'classics'] },
     { productId: 'nb-550', wears: 37, lastWorn: '2025-12-27', tags: ['casual', 'streetwear'] }
   ],
   recentActivity: [
-    { type: 'wear', icon: '👟', text: 'Wore your 990v5 — that\'s 48 wears!', time: '2 hours ago' },
+    { type: 'wear', icon: '👟', text: 'Wore your 990v5: that\'s 48 wears!', time: '2 hours ago' },
     { type: 'impact', icon: '🌿', text: 'Your wardrobe impact score increased to 78', time: '1 day ago' },
     { type: 'donate', icon: '🤝', text: 'Donated a pair through the Give Back program', time: '3 days ago' },
     { type: 'add', icon: '📦', text: 'Added BB550 to your wardrobe', time: '1 week ago' },
-    { type: 'achieve', icon: '🏆', text: 'Earned "Heritage Collector" badge', time: '2 weeks ago' }
+    { type: 'achieve', icon: '🏆', text: 'Earned "Classics Collector" badge', time: '2 weeks ago' }
   ]
 };
 
@@ -110,7 +110,7 @@ const AI_RECOMMENDATIONS = {
     {
       productId: 'nb-550',
       reason: 'A basketball-inspired court shoe that works perfectly for laid-back weekend wear. Clean lines, timeless appeal.',
-      insights: ['Supports community athletics', 'Archive revival since 2020']
+      insights: ['Supports community athletics', 'Iconic comeback since 2020']
     }
   ],
   performance: [
@@ -130,16 +130,16 @@ const AI_RECOMMENDATIONS = {
       insights: ['38% sustainable materials', 'Support for youth athletics']
     }
   ],
-  heritage: [
+  classics: [
     {
       productId: 'nb-990v5',
-      reason: 'The 990v5 is the crown jewel — handcrafted in Maine with five generations of design wisdom.',
+      reason: 'The 990v5 is the crown jewel, handcrafted in Maine with five generations of design wisdom.',
       insights: ['Made in Skowhegan, Maine', '45% sustainable materials', 'Supports 7,000 US jobs']
     },
     {
       productId: 'nb-1300',
       reason: 'Ralph Lauren\'s "Rolls Royce of sneakers." The 1300 represents peak American footwear craftsmanship.',
-      insights: ['Made in Norridgewock, Maine', '55% sustainable materials', 'Community heritage preservation']
+      insights: ['Made in Norridgewock, Maine', '55% sustainable materials', 'Supports domestic craft programs']
     },
     {
       productId: 'nb-made-uk-991',

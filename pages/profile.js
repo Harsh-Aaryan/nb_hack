@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — PROFILE PAGE
+// NEW BALANCE - PROFILE PAGE
 // ═══════════════════════════════════════════════════
 
 function renderProfile() {

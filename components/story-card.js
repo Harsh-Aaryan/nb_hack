@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — STORY CARD & IMPACT METER COMPONENTS
+// NEW BALANCE - STORY CARD & IMPACT METER COMPONENTS
 // ═══════════════════════════════════════════════════
 
 function createStoryCard(story) {

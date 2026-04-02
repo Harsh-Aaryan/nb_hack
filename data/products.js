@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — PRODUCT DATA
+// NEW BALANCE - PRODUCT DATA
 // Mock catalog with impact metadata
 // ═══════════════════════════════════════════════════
 
@@ -11,7 +11,7 @@ const PRODUCTS = [
     year: 1982,
     price: 185,
     colorway: 'Grey / Castlerock',
-    category: 'heritage',
+    category: 'classics',
     description: 'The pinnacle of the 990 lineage. Five generations of refinement have produced the most premium everyday running shoe ever crafted on American soil.',
     materials: ['Pigskin suede', 'Mesh upper', 'ENCAP midsole', 'Blown rubber outsole'],
     image: 'assets/products/990v5.jpg',
@@ -51,7 +51,7 @@ const PRODUCTS = [
     year: 1985,
     price: 250,
     colorway: 'Steel Blue / Grey',
-    category: 'heritage',
+    category: 'classics',
     description: 'Ralph Lauren called it "the Rolls Royce of sneakers." The 1300 remains the gold standard of American-made footwear craftsmanship.',
     materials: ['Premium suede', 'Mesh', 'ENCAP midsole', 'Vibram outsole'],
     image: 'assets/products/1300.jpg',
@@ -72,7 +72,7 @@ const PRODUCTS = [
     price: 175,
     colorway: 'Grey',
     category: 'performance',
-    description: 'The workhorse of the 990 series. Embraced by runners, dads, and style icons alike — the 993 is quiet confidence personified.',
+    description: 'The workhorse of the 990 series. Embraced by runners, dads, and style icons alike. The 993 is quiet confidence personified.',
     materials: ['Suede', 'Mesh', 'ABZORB cushioning', 'Blown rubber outsole'],
     image: 'assets/products/993.jpg',
     badges: ['made_in_usa'],
@@ -152,7 +152,7 @@ const PRODUCTS = [
     price: 150,
     colorway: 'Silver Metallic',
     category: 'performance',
-    description: 'Futuristic aesthetics meet heritage cushioning technology. The 1906R channels early-2000s runner energy with modern refinement.',
+    description: 'Futuristic aesthetics meet proven cushioning tech. The 1906R channels early-2000s runner energy with modern refinement.',
     materials: ['Synthetic leather', 'Mesh', 'ACTEVA midsole', 'N-durance outsole'],
     image: 'assets/products/1906r.jpg',
     badges: ['sustainable'],
@@ -171,7 +171,7 @@ const PRODUCTS = [
     year: 2001,
     price: 230,
     colorway: 'Navy / Grey',
-    category: 'heritage',
+    category: 'classics',
     description: 'Handcrafted in the Flimby factory in Cumbria, England. Each pair passes through 70 pairs of hands during assembly.',
     materials: ['Premium suede', 'Mesh', 'ABZORB midsole', 'EVA'],
     image: 'assets/products/991.jpg',
@@ -232,7 +232,7 @@ const PRODUCTS = [
     price: 75,
     colorway: 'White',
     category: 'lifestyle',
-    description: 'The cross-training icon. Simple, reliable, and unexpectedly fashionable — the 608 is the unsung hero of the NB catalog.',
+    description: 'The cross-training icon. Simple, reliable, and unexpectedly fashionable. The 608 is the unsung hero of the NB catalog.',
     materials: ['Leather', 'ABZORB cushioning', 'Rubber outsole'],
     image: 'assets/products/608.jpg',
     badges: ['community'],
@@ -255,12 +255,18 @@ const BADGE_CONFIG = {
 // Categories for filtering
 const CATEGORIES = [
   { id: 'all', label: 'All' },
-  { id: 'heritage', label: 'Heritage' },
+  { id: 'classics', label: 'Classics' },
   { id: 'performance', label: 'Performance' },
   { id: 'lifestyle', label: 'Lifestyle' }
 ];
 
+function formatProductCategory(categoryId) {
+  const match = CATEGORIES.find(c => c.id === categoryId);
+  return match ? match.label : categoryId;
+}
+window.formatProductCategory = formatProductCategory;
+
 // Export for module usage
 if (typeof module !== 'undefined') {
-  module.exports = { PRODUCTS, BADGE_CONFIG, CATEGORIES };
+  module.exports = { PRODUCTS, BADGE_CONFIG, CATEGORIES, formatProductCategory };
 }

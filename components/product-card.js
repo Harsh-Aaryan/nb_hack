@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — PRODUCT CARD COMPONENT
+// NEW BALANCE - PRODUCT CARD COMPONENT
 // ═══════════════════════════════════════════════════
 
 function createProductCard(product, badgeConfig) {
@@ -16,7 +16,7 @@ function createProductCard(product, badgeConfig) {
         </button>
       </div>
       <div class="product-card__info">
-        <div class="product-card__category">${product.category}</div>
+        <div class="product-card__category">${formatProductCategory(product.category)}</div>
         <h3 class="product-card__name">${product.name}</h3>
         <p class="product-card__model">${product.model}</p>
         <div class="product-card__footer">

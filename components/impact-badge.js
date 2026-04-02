@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — IMPACT BADGE COMPONENT
+// NEW BALANCE - IMPACT BADGE COMPONENT
 // ═══════════════════════════════════════════════════
 
 function createImpactBadge(badgeId, config, size = 'normal') {

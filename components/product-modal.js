@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — PRODUCT MODAL COMPONENT
+// NEW BALANCE - PRODUCT MODAL COMPONENT
 // ═══════════════════════════════════════════════════
 
 function renderProductModal() {
@@ -37,7 +37,7 @@ function showProductModal(productId) {
     </div>
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-4)">
       <div>
-        <div class="product-card__category">${product.category} • ${product.year}</div>
+        <div class="product-card__category">${formatProductCategory(product.category)} • ${product.year}</div>
         <h2 style="font-family: var(--font-heading); font-weight: 900; font-size: var(--text-3xl); line-height: 1">${product.name}</h2>
         <p style="color: var(--color-text-secondary); margin-top: var(--space-1)">${product.model}</p>
       </div>

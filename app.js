@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — FULL APP ROUTER & CORE
+// NEW BALANCE - FULL APP ROUTER & CORE
 // ═══════════════════════════════════════════════════
 
 // Global state and router

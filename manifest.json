@@ -1,7 +1,7 @@
 {
-  "name": "New Balance Heritage",
+  "name": "New Balance",
   "short_name": "New Balance",
-  "description": "Discover footwear history, build your curated wardrobe, and see your impact.",
+  "description": "Shop the catalog, use the AI stylist, manage your wardrobe, and track your impact.",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#FAFAFA",

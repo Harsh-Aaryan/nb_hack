@@ -23,7 +23,7 @@ function initOnboarding() {
                     <div class="step-header">
                         <span class="step-num">Step 01 / 02</span>
                         <h2 class="step-title">Your Identity</h2>
-                        <p class="step-desc">Synchronize with our global heritage archives.</p>
+                        <p class="step-desc">Connect your profile to personalized shopping and AI tools.</p>
                     </div>
                     <div class="onboarding-form">
                         <div class="form-group">
@@ -70,7 +70,7 @@ function initOnboarding() {
                 <div id="step-2" class="onboarding-step">
                     <div class="step-header">
                         <span class="step-num">Step 02 / 02</span>
-                        <h2 class="step-title">Heritage Core</h2>
+                        <h2 class="step-title">Your rotation</h2>
                         <p class="step-desc">Pick the silhouette that defines your rotation.</p>
                     </div>
                     <div class="onboarding-form">
@@ -86,7 +86,7 @@ function initOnboarding() {
                                 <input type="radio" name="blueprint" value="550">
                                 <div class="selection-box">
                                     <span class="emoji">🏀</span>
-                                    <span class="label">550 Archive</span>
+                                    <span class="label">550 Court</span>
                                 </div>
                             </label>
                             <label class="selection-item">

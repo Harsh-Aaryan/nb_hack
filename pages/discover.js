@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — DISCOVER PAGE
+// NEW BALANCE - DISCOVER PAGE
 // ═══════════════════════════════════════════════════
 
 let currentCategory = 'all';

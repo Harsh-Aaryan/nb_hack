@@ -1,6 +1,6 @@
 {
   "app_type": "Progressive Web App",
-  "theme": "New Balance inspired white retro heritage with philanthropy integration",
+  "theme": "New Balance retail-inspired light UI with AI shopping tools and philanthropy integration",
   "core_concept": "A sneaker app that combines wardrobe building, AI recommendations, and impact awareness",
   "design_system": {
     "background": "#FAFAFA",
@@ -17,7 +17,7 @@
     "style_inspiration": [
       "1980s running catalogs",
       "minimal editorial magazines",
-      "heritage sneaker branding"
+      "clean athletic retail branding"
     ]
   },
   "philanthropy_features": [
@@ -32,7 +32,7 @@
       "name": "Home",
       "sections": [
         "Recommended For You",
-        "From the Archive",
+        "Classics spotlight",
         "From the Community"
       ]
     },

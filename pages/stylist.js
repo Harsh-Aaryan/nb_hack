@@ -1,9 +1,105 @@
 // ═══════════════════════════════════════════════════
-// NB HERITAGE — AI STYLIST PAGE
+// NEW BALANCE - AI STYLIST PAGE
 // ═══════════════════════════════════════════════════
 
 let aiState = 'form'; // 'form', 'loading', 'results'
-let currentStyle = 'casual'; // default mock outcome
+let currentStyle = 'casual';
+
+function getTrendSignals() {
+  return typeof SOCIAL_TREND_SIGNALS !== 'undefined'
+    ? SOCIAL_TREND_SIGNALS
+    : { trends: [], refreshedLabel: '', windowLabel: '' };
+}
+
+function renderTrendRail(trends, options) {
+  const compact = options && options.compact;
+  const slim = options && options.slim;
+  if (!trends || !trends.length) {
+    return `<p class="stylist-trends__empty">Trend data will load here.</p>`;
+  }
+  const cardClass = slim ? 'trend-card trend-card--slim' : 'trend-card';
+  return `
+    <div class="stylist-trends__rail${compact ? ' stylist-trends__rail--compact' : ''}${slim ? ' stylist-trends__rail--slim' : ''}" role="list">
+      ${trends.map((t, i) => {
+        const up = t.momentumPct >= 0;
+        const mom = (up ? '+' : '') + t.momentumPct + '%';
+        const plat = t.platform === 'tiktok' ? 'TikTok' : 'Instagram';
+        const platShort = t.platform === 'tiktok' ? 'TT' : 'IG';
+        return `
+          <article class="${cardClass} reveal stagger-${Math.min(i + 1, 6)}" role="listitem">
+            <div class="trend-card__top">
+              <span class="trend-card__platform trend-card__platform--${t.platform}" aria-label="${plat}">${platShort}</span>
+              <span class="trend-card__mom${up ? ' trend-card__mom--up' : ' trend-card__mom--down'}">${mom}</span>
+            </div>
+            <h3 class="trend-card__tag">${t.hashtag}</h3>
+            <p class="trend-card__snippet">${t.snippet}</p>
+            ${slim ? '' : `
+            <div class="trend-card__heat" aria-hidden="true">
+              <span class="trend-card__heat-label">Buzz</span>
+              <div class="trend-card__heat-track">
+                <span class="trend-card__heat-fill" style="width: ${t.heatScore}%"></span>
+              </div>
+            </div>
+            `}
+            <p class="trend-card__nb"><span class="trend-card__nb-label">Pick hint</span> ${t.nbAngle}</p>
+          </article>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderTrendAnalysisBlock(options) {
+  const compact = options && options.compact;
+  const embedded = options && options.embedded;
+  const data = getTrendSignals();
+  const trends = data.trends || [];
+  const slim = embedded || compact;
+
+  if (compact && !embedded) {
+    return `
+      <section class="stylist-trends stylist-trends--compact reveal stagger-2" aria-labelledby="stylist-trends-compact-title">
+        <div class="stylist-trends__head">
+          <h2 id="stylist-trends-compact-title" class="stylist-trends__title">Trending now</h2>
+          <span class="stylist-trends__meta">${data.refreshedLabel || ''}</span>
+        </div>
+        ${renderTrendRail(trends.slice(0, 4), { compact: true, slim: true })}
+      </section>
+    `;
+  }
+
+  if (embedded) {
+    return `
+      <section class="stylist-trends stylist-trends--embedded reveal stagger-2" aria-labelledby="stylist-trends-embed-title">
+        <div class="stylist-trends__head stylist-trends__head--embed">
+          <div>
+            <h2 id="stylist-trends-embed-title" class="stylist-trends__title stylist-trends__title--embed">Trending now</h2>
+            <p class="stylist-trends__subtitle">${data.windowLabel || ''} · ${data.refreshedLabel || ''}</p>
+          </div>
+        </div>
+        <p class="stylist-trends__embed-hint">We weigh these movements when we match you to shoes.</p>
+        ${renderTrendRail(trends, { slim: true })}
+      </section>
+    `;
+  }
+
+  return `
+    <section class="stylist-trends reveal stagger-1" aria-labelledby="stylist-trends-title">
+      <div class="stylist-trends__head">
+        <div>
+          <h2 id="stylist-trends-title" class="stylist-trends__title">Trending now</h2>
+          <p class="stylist-trends__subtitle">${data.windowLabel || ''}</p>
+        </div>
+        <span class="stylist-trends__meta">${data.refreshedLabel || ''}</span>
+      </div>
+      ${renderTrendRail(trends)}
+      <p class="stylist-trends__footnote">
+        <span class="stylist-trends__pulse" aria-hidden="true"></span>
+        Trend data updates throughout the day.
+      </p>
+    </section>
+  `;
+}
 
 function renderStylist() {
   if (aiState === 'loading') {
@@ -12,153 +108,175 @@ function renderStylist() {
     return renderStylistResults();
   }
 
-  const content = `
-    <div class="page page-enter">
-      <div class="stylist-header reveal">
-        <div class="stylist-header__icon">✨</div>
-        <h1 class="stylist-header__title">AI Stylist Consultation</h1>
-        <p class="stylist-header__desc">Tell us what you're looking for, and our heritage AI will recommend the perfect additions to your rotation.</p>
-      </div>
+  return `
+    <div class="page page-enter stylist-page">
+      <form id="stylistForm" class="stylist-panel reveal" onsubmit="handleStylistSubmit(event)">
+        <div class="stylist-panel__intro">
+          <h1 class="stylist-panel__title">Find your pair</h1>
+          <p class="stylist-panel__lead">Two quick taps. We match you to New Balance using your goals and what people are wearing on social.</p>
+        </div>
 
-      <div class="stylist-form reveal stagger-1">
-        <form id="stylistForm" onsubmit="handleStylistSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="primaryUse">Primary Use</label>
-            <select class="form-select" id="primaryUse" required>
-              <option value="" disabled selected>Select how you'll wear them</option>
-              <option value="casual">Everyday Casual</option>
-              <option value="performance">Running & Training</option>
-              <option value="heritage">Collecting & Heritage</option>
-            </select>
+        <fieldset class="stylist-field">
+          <legend class="stylist-field__legend">What are you shopping for?</legend>
+          <div class="stylist-pick-grid" role="radiogroup" aria-label="Primary use">
+            <label class="stylist-pick">
+              <input type="radio" name="stylistPrimary" value="casual" class="stylist-pick__input" checked>
+              <span class="stylist-pick__card">
+                <span class="stylist-pick__icon" aria-hidden="true">👟</span>
+                <span class="stylist-pick__title">Everyday</span>
+                <span class="stylist-pick__hint">Casual &amp; street</span>
+              </span>
+            </label>
+            <label class="stylist-pick">
+              <input type="radio" name="stylistPrimary" value="performance" class="stylist-pick__input">
+              <span class="stylist-pick__card">
+                <span class="stylist-pick__icon" aria-hidden="true">🏃</span>
+                <span class="stylist-pick__title">Training</span>
+                <span class="stylist-pick__hint">Running &amp; workouts</span>
+              </span>
+            </label>
+            <label class="stylist-pick">
+              <input type="radio" name="stylistPrimary" value="classics" class="stylist-pick__input">
+              <span class="stylist-pick__card">
+                <span class="stylist-pick__icon" aria-hidden="true">✦</span>
+                <span class="stylist-pick__title">Collectors</span>
+                <span class="stylist-pick__hint">Made in USA / UK, limited</span>
+              </span>
+            </label>
           </div>
+        </fieldset>
 
-          <div class="form-group">
-            <label class="form-label">Style Preferences (Select multiple)</label>
-            <div class="checkbox-group mt-2">
-              <label class="checkbox-pill">
-                <input type="checkbox" onclick="this.parentElement.classList.toggle('checked')">
-                Minimalist
-              </label>
-              <label class="checkbox-pill">
-                <input type="checkbox" onclick="this.parentElement.classList.toggle('checked')">
-                Chunky/Dad Shoe
-              </label>
-              <label class="checkbox-pill">
-                <input type="checkbox" onclick="this.parentElement.classList.toggle('checked')">
-                Retro Runner
-              </label>
-              <label class="checkbox-pill">
-                <input type="checkbox" onclick="this.parentElement.classList.toggle('checked')">
-                Earth Tones
-              </label>
-              <label class="checkbox-pill">
-                <input type="checkbox" onclick="this.parentElement.classList.toggle('checked')">
-                Bold Colors
-              </label>
-            </div>
+        <fieldset class="stylist-field">
+          <legend class="stylist-field__legend">Style notes <span class="stylist-optional">optional</span></legend>
+          <p class="stylist-field__hint" id="vibe-hint">Tap anything that sounds like you.</p>
+          <div class="stylist-vibe-grid" role="group" aria-describedby="vibe-hint">
+            <label class="stylist-vibe">
+              <input type="checkbox" class="stylist-vibe__input" onclick="this.closest('.stylist-vibe').classList.toggle('stylist-vibe--on', this.checked)">
+              <span class="stylist-vibe__label">Minimal</span>
+            </label>
+            <label class="stylist-vibe">
+              <input type="checkbox" class="stylist-vibe__input" onclick="this.closest('.stylist-vibe').classList.toggle('stylist-vibe--on', this.checked)">
+              <span class="stylist-vibe__label">Chunky / dad shoe</span>
+            </label>
+            <label class="stylist-vibe">
+              <input type="checkbox" class="stylist-vibe__input" onclick="this.closest('.stylist-vibe').classList.toggle('stylist-vibe--on', this.checked)">
+              <span class="stylist-vibe__label">Retro runner</span>
+            </label>
+            <label class="stylist-vibe">
+              <input type="checkbox" class="stylist-vibe__input" onclick="this.closest('.stylist-vibe').classList.toggle('stylist-vibe--on', this.checked)">
+              <span class="stylist-vibe__label">Earth tones</span>
+            </label>
+            <label class="stylist-vibe">
+              <input type="checkbox" class="stylist-vibe__input" onclick="this.closest('.stylist-vibe').classList.toggle('stylist-vibe--on', this.checked)">
+              <span class="stylist-vibe__label">Bold colors</span>
+            </label>
           </div>
+        </fieldset>
 
-          <div class="form-group mt-8">
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Get Recommendations</button>
-          </div>
-        </form>
-      </div>
+        ${renderTrendAnalysisBlock({ embedded: true })}
+
+        <div class="stylist-cta">
+          <button type="submit" class="btn btn-primary btn-lg stylist-submit">See my picks</button>
+        </div>
+      </form>
     </div>
   `;
-  
-  return content;
 }
 
 function renderStylistLoading() {
   return `
-    <div class="page" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 70vh;">
-      <div class="typing-indicator" style="font-size: 2rem; margin-bottom: var(--space-4)">
-        <span></span><span></span><span></span>
+    <div class="page stylist-page stylist-page--loading">
+      <div class="stylist-loading">
+        <div class="stylist-loading__ring" aria-hidden="true"></div>
+        <h2 class="stylist-loading__title">Finding picks for you</h2>
+        <p class="stylist-loading__line">Blending your answers with trending styles…</p>
+        <p class="stylist-loading__line stylist-loading__line--muted">Almost there.</p>
       </div>
-      <h2 style="font-family: var(--font-heading); font-weight: bold; margin-bottom: var(--space-2)">Analyzing your profile...</h2>
-      <p style="color: var(--color-text-muted)">Cross-referencing heritage archives and impact data.</p>
     </div>
   `;
 }
 
 function renderStylistResults() {
   const recommendations = AI_RECOMMENDATIONS[currentStyle] || AI_RECOMMENDATIONS.casual;
-  
-  return `
-    <div class="page page-enter">
-      <div class="stylist-header reveal">
-        <h1 class="stylist-header__title">Your Curated Rotation</h1>
-        <p class="stylist-header__desc">Based on your preferences for ${currentStyle} use with an emphasis on our heritage models.</p>
-        <button class="btn btn-ghost mt-4" onclick="resetStylist()">← Start Over</button>
-      </div>
+  const useLabel =
+    currentStyle === 'performance'
+      ? 'training &amp; runs'
+      : currentStyle === 'classics'
+        ? 'collectors &amp; limited runs'
+        : 'everyday wear';
 
-      <div class="stylist-results reveal stagger-1">
-        <div class="stylist-results__header">
-          <div class="stylist-results__icon">✨</div>
-          <h2 class="stylist-results__title">AI Analysis</h2>
+  return `
+    <div class="page page-enter stylist-page stylist-page--results">
+      <header class="stylist-result-head reveal">
+        <button type="button" class="stylist-result-head__back" onclick="resetStylist()" aria-label="Start over">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <div class="stylist-result-head__text">
+          <h1 class="stylist-result-head__title">Your picks</h1>
+          <p class="stylist-result-head__sub">For <strong>${useLabel}</strong>, with social trends in the mix.</p>
         </div>
-        
+      </header>
+
+      <div class="stylist-results stylist-results--fresh reveal stagger-1">
         <div class="stylist-results__list">
           ${recommendations.map((rec, i) => {
             const product = PRODUCTS.find(p => p.id === rec.productId);
             if (!product) return '';
-            
+
             return `
-              <div class="rec-card reveal stagger-${i+2}">
-                <div class="rec-card__header">
-                  <div class="rec-card__image animate-fade-in">
-                    <img src="${product.image}" loading="lazy" alt="${product.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100%\\' height=\\'100%\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23eee\\'%3E%3C/rect%3E%3C/svg%3E'">
-                  </div>
-                  <div>
-                    <h3 class="rec-card__title">${product.name}</h3>
-                    <p style="font-family: var(--font-body); font-size: var(--text-sm); font-weight: bold">$${product.price} • ${product.category}</p>
-                  </div>
-                  <button class="btn btn-outline btn-sm" style="margin-left: auto;" onclick="showProductModal('${product.id}')">View Details</button>
+              <article class="stylist-rec reveal stagger-${Math.min(i + 2, 8)}">
+                <div class="stylist-rec__visual" onclick="showProductModal('${product.id}')">
+                  <img src="${product.image}" loading="lazy" alt="${product.name}" class="stylist-rec__img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100%\\' height=\\'100%\\' viewBox=\\'0 0 100 100\\'%3E%3Crect width=\\'100\\' height=\\'100\\' fill=\\'%23eee\\'%3E%3C/rect%3E%3C/svg%3E'">
+                  <span class="stylist-rec__rank">${i + 1}</span>
                 </div>
-                <p class="rec-card__reason">${rec.reason}</p>
-                <div class="rec-card__insights mt-3">
-                  ${rec.insights.map(insight => `
-                    <span class="tag" style="background: var(--color-bg-warm); color: var(--color-navy)">${insight}</span>
-                  `).join('')}
+                <div class="stylist-rec__body">
+                  <div class="stylist-rec__top">
+                    <h2 class="stylist-rec__name">${product.name}</h2>
+                    <p class="stylist-rec__meta">$${product.price} · ${formatProductCategory(product.category)}</p>
+                  </div>
+                  <p class="stylist-rec__why">${rec.reason}</p>
+                  <div class="stylist-rec__tags">
+                    ${rec.insights.map(insight => `<span class="stylist-rec__tag">${insight}</span>`).join('')}
+                  </div>
+                  <button type="button" class="btn btn-outline btn-sm stylist-rec__btn" onclick="showProductModal('${product.id}')">Details &amp; add to wardrobe</button>
                 </div>
-              </div>
+              </article>
             `;
           }).join('')}
         </div>
-        
-        <div class="stylist-ai-note">
-          Recommendations generated autonomously by NB Heritage AI Stylist based on real-time trend aggregations and personal wearing habits.
-        </div>
       </div>
+
+      ${renderTrendAnalysisBlock({ compact: true })}
+
+      <p class="stylist-footnote reveal">Want different picks? Tap back and change your answers.</p>
     </div>
   `;
 }
 
-window.handleStylistSubmit = function(event) {
+window.handleStylistSubmit = function (event) {
   event.preventDefault();
-  
-  const select = document.getElementById('primaryUse');
-  if (select && select.value) {
-    currentStyle = select.value;
+
+  const picked = document.querySelector('input[name="stylistPrimary"]:checked');
+  if (picked && picked.value) {
+    currentStyle = picked.value;
   }
-  
+
   aiState = 'loading';
   const main = document.getElementById('main-content');
   main.innerHTML = renderStylist();
-  
-  // Simulate AI loading delay
+
   setTimeout(() => {
     aiState = 'results';
     main.innerHTML = renderStylist();
     if (window.initScrollReveal) window.initScrollReveal();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 2000);
-}
+  }, 1600);
+};
 
-window.resetStylist = function() {
+window.resetStylist = function () {
   aiState = 'form';
   const main = document.getElementById('main-content');
   main.innerHTML = renderStylist();
   if (window.initScrollReveal) window.initScrollReveal();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+};
