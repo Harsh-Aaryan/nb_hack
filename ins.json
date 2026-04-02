@@ -1,0 +1,89 @@
+{
+  "app_type": "Progressive Web App",
+  "theme": "New Balance inspired white retro heritage with philanthropy integration",
+  "core_concept": "A sneaker app that combines wardrobe building, AI recommendations, and impact awareness",
+  "design_system": {
+    "background": "#FAFAFA",
+    "text_color": "#111111",
+    "accent_colors": [
+      "#C8102E",
+      "#1B365D"
+    ],
+    "typography": {
+      "headings": "serif",
+      "body": "sans-serif"
+    },
+    "layout": "editorial grid, high whitespace, minimal dividers",
+    "style_inspiration": [
+      "1980s running catalogs",
+      "minimal editorial magazines",
+      "heritage sneaker branding"
+    ]
+  },
+  "philanthropy_features": [
+    "impact badges on products",
+    "wardrobe impact tracking",
+    "donation and recycling suggestions",
+    "community stories section",
+    "impact score system"
+  ],
+  "pages": [
+    {
+      "name": "Home",
+      "sections": [
+        "Recommended For You",
+        "From the Archive",
+        "From the Community"
+      ]
+    },
+    {
+      "name": "Discover",
+      "features": [
+        "grid layout",
+        "inline filters",
+        "impact badges on products"
+      ]
+    },
+    {
+      "name": "AI Stylist",
+      "features": [
+        "input-based recommendations",
+        "structured output",
+        "purpose-aware suggestions"
+      ]
+    },
+    {
+      "name": "Wardrobe",
+      "features": [
+        "sneaker collection grid",
+        "AI tagging",
+        "wear insights",
+        "impact tracking",
+        "donation/recycling suggestions",
+        "rotation completion recommendations"
+      ]
+    },
+    {
+      "name": "Profile",
+      "features": [
+        "activity stats",
+        "style profile",
+        "impact score"
+      ]
+    }
+  ],
+  "technical_requirements": [
+    "PWA installable",
+    "responsive",
+    "fast performance",
+    "component-based frontend",
+    "mock data including impact metadata",
+    "subtle animations"
+  ],
+  "focus": [
+    "authentic brand alignment",
+    "user retention via wardrobe",
+    "meaningful philanthropy integration",
+    "clean premium UX"
+  ]
+}

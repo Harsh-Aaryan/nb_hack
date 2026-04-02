@@ -1,0 +1,22 @@
+{
+  "name": "New Balance Heritage",
+  "short_name": "NB Heritage",
+  "description": "Discover footwear history, build your curated wardrobe, and see your impact.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FAFAFA",
+  "theme_color": "#FAFAFA",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%23C8102E' rx='38'/%3E%3Cpath fill='white' d='M48 76h96v40H48z'/%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%23C8102E' rx='102'/%3E%3Cpath fill='white' d='M128 200h256v112H128z'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

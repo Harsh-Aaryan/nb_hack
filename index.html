@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- PWA Viewport details -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAFAFA">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- SEO & Meta -->
+  <title>New Balance Heritage | Archive & Stylist</title>
+  <meta name="description" content="Discover the stories, craftsmanship, and impact behind the most iconic silhouettes in footwear history. Build your wardrobe and explore your impact.">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23C8102E' rx='20'/%3E%3Cpath fill='white' d='M25 40h50v20H25z'/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png"> <!-- Will fail gracefully if missing -->
+  
+  <!-- Fonts: Playfair Display (Serif) & Inter (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/onboarding.css">
+</head>
+<body>
+  <!-- Main SPA Mount Point -->
+  <main id="app">
+    <div id="main-content">
+      <!-- Pages will be injected here by router -->
+    </div>
+  </main>
+
+  <!-- Data -->
+  <script src="data/products.js"></script>
+  <script src="data/community.js"></script>
+
+  <!-- Components -->
+  <script src="components/impact-badge.js"></script>
+  <script src="components/product-card.js"></script>
+  <script src="components/story-card.js"></script>
+  <script src="components/product-modal.js"></script>
+  <script src="components/nav.js"></script>
+  <script src="components/onboarding.js"></script>
+
+  <!-- Pages -->
+  <script src="pages/home.js"></script>
+  <script src="pages/discover.js"></script>
+  <script src="pages/stylist.js"></script>
+  <script src="pages/wardrobe.js"></script>
+  <script src="pages/profile.js"></script>
+
+  <!-- App Core -->
+  <script src="app.js"></script>
+</body>
+</html>
