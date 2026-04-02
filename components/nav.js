@@ -16,7 +16,7 @@ function renderNav() {
   return `
     <header class="nav-top">
       <div class="nav-top__container">
-        <a href="#/home" class="nav-top__logo">NB Heritage</a>
+        <a href="#/home" class="nav-top__logo">New Balance</a>
         <div class="nav-top__tabs">
           ${NAV_ITEMS.map(item => `
             <a href="${item.hash}" class="nav-top__item ${currentHash === item.hash ? 'active' : ''}" data-id="${item.id}">
@@ -27,7 +27,7 @@ function renderNav() {
       </div>
     </header>
     <header class="nav-mobile-header">
-      <div class="nav-mobile-header__logo">NB Heritage</div>
+      <div class="nav-mobile-header__logo">New Balance</div>
     </header>
     <nav class="nav-bottom">
       ${NAV_ITEMS.map(item => `

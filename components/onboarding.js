@@ -10,7 +10,7 @@ function initOnboarding() {
         <div id="onboarding-content" class="onboarding-content">
             <!-- Loading State -->
             <div id="loading-box" class="loading-box">
-                <h1 class="loading-logo">NB HERITAGE</h1>
+                <h1 class="loading-logo">New Balance</h1>
                 <div class="loading-bar">
                     <div id="loading-bar-fill" class="loading-bar-fill"></div>
                 </div>
