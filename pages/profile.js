@@ -3,12 +3,15 @@
 // ═══════════════════════════════════════════════════
 
 function renderProfile() {
+  const profileName = localStorage.getItem('nb-user-name') || USER_DATA.name;
+  const profileInitials = localStorage.getItem('nb-user-initials') || USER_DATA.initials;
+
   const content = `
     <div class="page page-enter">
       <div class="profile-header reveal">
-        <div class="profile-avatar hover-grow">${USER_DATA.initials}</div>
-        <h1 class="profile-name">${USER_DATA.name}</h1>
-        <p class="profile-member">Member since ${USER_DATA.memberSince}</p>
+        <div class="profile-avatar hover-grow">${profileInitials}</div>
+        <h1 class="profile-name">${profileName}</h1>
+        <p class="profile-member">Member since April 2026</p>
       </div>
 
       <div class="profile-stats">

@@ -70,33 +70,33 @@ function initOnboarding() {
                 <div id="step-2" class="onboarding-step">
                     <div class="step-header">
                         <span class="step-num">Step 02 / 02</span>
-                        <h2 class="step-title">Your rotation</h2>
-                        <p class="step-desc">Pick the silhouette that defines your rotation.</p>
+                        <h2 class="step-title">Timeless Classics</h2>
+                        <p class="step-desc">Choose the classic style that matches your groove.</p>
                     </div>
                     <div class="onboarding-form">
                         <div class="selection-grid">
-                            <label class="selection-item">
+                            <label class="selection-item" title="Smooth walking cushioning and premium comfort that define the 990 heritage.">
                                 <input type="radio" name="blueprint" value="990" checked>
                                 <div class="selection-box">
                                     <span class="emoji">👟</span>
                                     <span class="label">990v Series</span>
                                 </div>
                             </label>
-                            <label class="selection-item">
+                            <label class="selection-item" title="Bold throwback style inspired by early streetball and hoops culture.">
                                 <input type="radio" name="blueprint" value="550">
                                 <div class="selection-box">
                                     <span class="emoji">🏀</span>
-                                    <span class="label">550 Court</span>
+                                    <span class="label">550 Archive</span>
                                 </div>
                             </label>
-                            <label class="selection-item">
+                            <label class="selection-item" title="Retro running look with a tech edge for everyday comfort.">
                                 <input type="radio" name="blueprint" value="2002">
                                 <div class="selection-box">
                                     <span class="emoji">🌫️</span>
                                     <span class="label">2002R Tech</span>
                                 </div>
                             </label>
-                            <label class="selection-item">
+                            <label class="selection-item" title="Vintage-inspired daily trainer known for classic design and support.">
                                 <input type="radio" name="blueprint" value="574">
                                 <div class="selection-box">
                                     <span class="emoji">🌲</span>
@@ -151,7 +151,22 @@ function nextOnboardingStep(stepNum) {
 function completeOnboarding() {
     const onboardingEl = document.getElementById('onboarding-screen');
     onboardingEl.classList.add('fade-out');
-    
+
+    // Save user-entered name as profile name
+    const enteredName = document.getElementById('user-name')?.value?.trim();
+    if (enteredName) {
+        localStorage.setItem('nb-user-name', enteredName);
+
+        const initials = enteredName
+            .split(' ')
+            .filter(Boolean)
+            .slice(0, 2)
+            .map(w => w[0].toUpperCase())
+            .join('');
+
+        if (initials) localStorage.setItem('nb-user-initials', initials);
+    }
+
     // Save that onboarding is done
     localStorage.setItem('nb-onboarded', 'true');
     
