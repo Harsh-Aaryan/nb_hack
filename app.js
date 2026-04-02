@@ -28,6 +28,10 @@ function router() {
   
   // Initialize scroll reveal animations for new page content
   initScrollReveal();
+
+  if (hash === '#/discover' && typeof window.initDiscoverDeck === 'function') {
+    window.initDiscoverDeck();
+  }
   
   // Scroll to top
   window.scrollTo(0, 0);
@@ -40,6 +44,9 @@ window.renderCurrentPage = function() {
   const renderFn = routes[hash] || routes['#/home'];
   main.innerHTML = renderFn();
   initScrollReveal();
+  if (hash === '#/discover' && typeof window.initDiscoverDeck === 'function') {
+    window.initDiscoverDeck();
+  }
 };
 
 function initScrollReveal() {
