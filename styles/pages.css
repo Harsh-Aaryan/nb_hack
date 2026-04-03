@@ -1564,6 +1564,319 @@
   font-weight: var(--weight-black);
 }
 
+.wardrobe-grid-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+  margin: var(--space-10) 0 var(--space-4);
+  padding: 0 var(--space-1);
+}
+
+.wardrobe-ai {
+  margin-bottom: var(--space-2);
+}
+
+.wardrobe-ai__panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4) var(--space-4);
+}
+
+.wardrobe-ai__head {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.wardrobe-ai__badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-surface);
+  background: linear-gradient(135deg, var(--color-navy) 0%, #1a2d4a 100%);
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset;
+}
+
+.wardrobe-ai__badge-icon {
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.wardrobe-ai__head-copy {
+  min-width: 0;
+}
+
+.wardrobe-ai__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-black);
+  color: var(--color-text);
+  line-height: var(--leading-tight);
+  margin: 0 0 2px;
+}
+
+.wardrobe-ai__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-red);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+}
+
+.wardrobe-ai__analysis {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.wardrobe-ai__strip {
+  margin-bottom: var(--space-3);
+}
+
+.wardrobe-ai__strip--combos {
+  margin-bottom: var(--space-2);
+}
+
+.wardrobe-ai__strip-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.wardrobe-ai__strip-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.wardrobe-ai__strip-meta {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.wardrobe-ai__refs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wardrobe-ai__ref {
+  position: relative;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-bg-warm);
+  border: 1px solid var(--color-border-light);
+}
+
+.wardrobe-ai__ref-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wardrobe-ai__ref-remove {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.wardrobe-ai__empty {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: var(--leading-normal);
+}
+
+.wardrobe-ai__empty--inline {
+  padding: var(--space-2) 0;
+}
+
+.wardrobe-ai__empty--cta {
+  font-size: var(--text-xs);
+  margin: 0 0 var(--space-2);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.wardrobe-ai__combos {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wardrobe-ai-combo {
+  flex: 0 0 auto;
+  width: min(220px, 78vw);
+  scroll-snap-align: start;
+  background: var(--color-bg-warm);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.wardrobe-ai-combo__title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  color: var(--color-navy);
+  margin: 0 0 var(--space-2);
+  letter-spacing: 0.02em;
+}
+
+.wardrobe-ai-combo__pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.wardrobe-ai-combo__shoe {
+  flex: 1;
+  max-width: 72px;
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  cursor: pointer;
+  border: 1px solid var(--color-border-light);
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wardrobe-ai-combo__shoe:hover {
+  border-color: var(--color-navy);
+  box-shadow: var(--shadow-xs);
+}
+
+.wardrobe-ai-combo__shoe img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.wardrobe-ai-combo__name {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-secondary);
+  margin-top: 4px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.wardrobe-ai-combo__join {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.wardrobe-ai-combo__text {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.wardrobe-ai__photo-ai {
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-warm);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-red);
+}
+
+.wardrobe-ai__photo-ai-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-navy);
+  margin-bottom: var(--space-1);
+}
+
+.wardrobe-ai__tips {
+  margin: 0;
+  padding-left: var(--space-4);
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+.wardrobe-ai__tip {
+  margin-bottom: 2px;
+}
+
+.wardrobe-ai__tip:last-child {
+  margin-bottom: 0;
+}
+
+.wardrobe-ai__foot {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin: var(--space-3) 0 0;
+  line-height: var(--leading-normal);
+}
+
 .wardrobe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -1601,65 +1914,6 @@
   font-weight: var(--weight-medium);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-}
-
-.wardrobe-inspo__desc {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  margin: calc(var(--space-2) * -1) 0 var(--space-4);
-  line-height: var(--leading-normal);
-}
-
-.wardrobe-inspo__empty {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  font-style: italic;
-  margin: 0 0 var(--space-4);
-}
-
-.wardrobe-inspo__row {
-  display: flex;
-  gap: var(--space-3);
-  overflow-x: auto;
-  padding-bottom: var(--space-2);
-  -webkit-overflow-scrolling: touch;
-}
-
-.wardrobe-inspo__cell {
-  position: relative;
-  flex: 0 0 auto;
-  width: 88px;
-  height: 88px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--color-bg-warm);
-}
-
-.wardrobe-inspo__thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.wardrobe-inspo__remove {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 22px;
-  height: 22px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.55);
-  color: white;
-  font-size: 14px;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
 }
 
 .wardrobe-section {
