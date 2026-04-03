@@ -14,23 +14,25 @@
 
 /* ── Home Page Background ── */
 .home-bg-base {
-  position: fixed;
+  position: absolute;
   inset: -20px;
   z-index: 0;
   background-image: linear-gradient(rgba(250, 250, 250, 0.75), rgba(250, 250, 250, 0.88)), url('../illustrations/new-balance-hand-drawn-illustration-pep-rally-by-aron-leah.webp');
-  background-size: cover;
-  background-position: center;
+  background-size: 120% 120%;
+  background-repeat: repeat;
+  background-position: calc(50% + var(--bg-x, 0%)) calc(50% + var(--bg-y, 0%));
   filter: blur(2px); /* Baseline slight blur at the bottom */
   pointer-events: none;
 }
 
 .home-bg-gradient-blur {
-  position: fixed;
+  position: absolute;
   inset: -20px;
   z-index: 0;
   background-image: linear-gradient(rgba(250, 250, 250, 0.75), rgba(250, 250, 250, 0.88)), url('../illustrations/new-balance-hand-drawn-illustration-pep-rally-by-aron-leah.webp');
-  background-size: cover;
-  background-position: center;
+  background-size: 120% 120%;
+  background-repeat: repeat;
+  background-position: calc(50% + var(--bg-x-blur, 0%)) calc(50% + var(--bg-y-blur, 0%));
   filter: blur(16px); /* Heavy blur at the top */
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 85%);
   mask-image: linear-gradient(to bottom, black 0%, transparent 85%);

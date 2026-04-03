@@ -171,6 +171,11 @@
   to   { transform: translateX(-50%); }
 }
 
+@keyframes bgScrollUp {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+}
+
 /* ── Animation Utility Classes ── */
 
 .animate-fade-in {

@@ -106,6 +106,41 @@ window.addToWardrobe = function(productId) {
   }
 }
 
+// Mouse-following background functionality
+function initMouseBackground() {
+  let mouseX = 0;
+  let mouseY = 0;
+  let bgX = 0;
+  let bgY = 0;
+  let bgXBlur = 0;
+  let bgYBlur = 0;
+  
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX / window.innerWidth;
+    mouseY = e.clientY / window.innerHeight;
+  });
+  
+  function updateBackground() {
+    // Smooth interpolation for base layer (slower movement)
+    bgX += (mouseX * 20 - bgX) * 0.02;
+    bgY += (mouseY * 20 - bgY) * 0.02;
+    
+    // Smooth interpolation for blur layer (faster, opposite direction)
+    bgXBlur += (mouseX * -15 - bgXBlur) * 0.03;
+    bgYBlur += (mouseY * -15 - bgYBlur) * 0.03;
+    
+    // Update CSS custom properties
+    document.documentElement.style.setProperty('--bg-x', bgX + '%');
+    document.documentElement.style.setProperty('--bg-y', bgY + '%');
+    document.documentElement.style.setProperty('--bg-x-blur', bgXBlur + '%');
+    document.documentElement.style.setProperty('--bg-y-blur', bgYBlur + '%');
+    
+    requestAnimationFrame(updateBackground);
+  }
+  
+  updateBackground();
+}
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
   // Setup routing
@@ -119,6 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Init modal container
   renderProductModal();
+  
+  // Init mouse-following background
+  initMouseBackground();
   
   // Register Service Worker for PWA
   if ('serviceWorker' in navigator) {
