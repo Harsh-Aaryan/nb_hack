@@ -25,56 +25,7 @@ function buildWardrobeAnalysis(products) {
   const lead = sorted[0];
   const tags = wardrobeCollectTags(products);
   const tagStr = tags.length ? tags.slice(0, 4).join(', ') : 'everyday';
-  return `Model read: ${cats.join(' · ')}. Lead pair ${lead.name} (${wardrobeGetWears(lead.id)} wears). Signal: ${tagStr}. Suggested pairings below use only your shelf.`;
-}
-
-function buildWardrobeCombinations(products) {
-  if (products.length < 2) return [];
-  const sorted = [...products].sort((a, b) => wardrobeGetWears(b.id) - wardrobeGetWears(a.id));
-  const combos = [];
-  const least = sorted[sorted.length - 1];
-  combos.push({
-    title: 'Rotation balance',
-    ids: [sorted[0].id, least.id],
-    text: `Lead with ${sorted[0].name} for most days; swap in ${least.name} when you want a different silhouette without buying new. Both are already yours.`
-  });
-
-  const byCat = {};
-  products.forEach(p => {
-    if (!byCat[p.category]) byCat[p.category] = [];
-    byCat[p.category].push(p);
-  });
-  const catKeys = Object.keys(byCat);
-  if (catKeys.length >= 2) {
-    const a = byCat[catKeys[0]][0];
-    const b = byCat[catKeys[1]].find(p => p.id !== a.id) || byCat[catKeys[1]][0];
-    if (a.id !== b.id) {
-      combos.push({
-        title: 'Cross-lane day',
-        ids: [a.id, b.id],
-        text: `${a.name} handles ${formatProductCategory(a.category)} moments; ${b.name} covers ${formatProductCategory(b.category)}. Pairings assume the same pants and layers you already run.`
-      });
-    }
-  }
-
-  if (products.length >= 3) {
-    const mid = Math.floor(sorted.length / 2);
-    const p1 = sorted[mid];
-    const p2 = sorted[(mid + 1) % sorted.length];
-    if (p1.id !== p2.id) {
-      const key = p1.id + ',' + p2.id;
-      const exists = combos.some(c => c.ids.join(',') === key || c.ids.join(',') === p2.id + ',' + p1.id);
-      if (!exists) {
-        combos.push({
-          title: 'Even wear week',
-          ids: [p1.id, p2.id],
-          text: `Alternate ${p1.name} and ${p2.name} across the week to balance creasing and keep both pairs feeling fresh.`
-        });
-      }
-    }
-  }
-
-  return combos.slice(0, 3);
+  return `Model read: ${cats.join(' · ')}. Lead pair ${lead.name} (${wardrobeGetWears(lead.id)} wears). Signal: ${tagStr}.`;
 }
 
 function buildPhotoStyleTips(stylePhotos, products) {
@@ -90,29 +41,6 @@ function buildPhotoStyleTips(stylePhotos, products) {
   ];
 }
 
-function renderWardrobeComboCard(combo, stagger) {
-  const p1 = PRODUCTS.find(p => p.id === combo.ids[0]);
-  const p2 = PRODUCTS.find(p => p.id === combo.ids[1]);
-  if (!p1 || !p2) return '';
-  return `
-    <article class="wardrobe-ai-combo reveal stagger-${stagger}">
-      <h3 class="wardrobe-ai-combo__title">${combo.title}</h3>
-      <div class="wardrobe-ai-combo__pair">
-        <button type="button" class="wardrobe-ai-combo__shoe" onclick="showProductModal('${p1.id}')" aria-label="${p1.name}">
-          <img src="${p1.image}" alt="" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'80\\' height=\\'80\\'%3E%3Crect fill=\\'%23eee\\' width=\\'80\\' height=\\'80\\'/%3E%3C/svg%3E'">
-          <span class="wardrobe-ai-combo__name">${p1.name}</span>
-        </button>
-        <span class="wardrobe-ai-combo__join" aria-hidden="true">+</span>
-        <button type="button" class="wardrobe-ai-combo__shoe" onclick="showProductModal('${p2.id}')" aria-label="${p2.name}">
-          <img src="${p2.image}" alt="" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'80\\' height=\\'80\\'%3E%3Crect fill=\\'%23eee\\' width=\\'80\\' height=\\'80\\'/%3E%3C/svg%3E'">
-          <span class="wardrobe-ai-combo__name">${p2.name}</span>
-        </button>
-      </div>
-      <p class="wardrobe-ai-combo__text">${combo.text}</p>
-    </article>
-  `;
-}
-
 function renderWardrobe() {
   const stylePhotos = typeof window.getStyleInspoPhotos === 'function' ? window.getStyleInspoPhotos() : [];
   const wardrobeProducts = USER_DATA.wardrobe.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean);
@@ -120,7 +48,6 @@ function renderWardrobe() {
   USER_DATA.impactScore = 85;
 
   const analysis = buildWardrobeAnalysis(wardrobeProducts);
-  const combinations = buildWardrobeCombinations(wardrobeProducts);
   const photoTips = buildPhotoStyleTips(stylePhotos, wardrobeProducts);
 
   const content = `
@@ -172,26 +99,6 @@ function renderWardrobe() {
                 : `<p class="wardrobe-ai__empty wardrobe-ai__empty--inline">No photos yet.</p>`
             }
           </div>
-
-          ${
-            combinations.length
-              ? `
-          <div class="wardrobe-ai__strip wardrobe-ai__strip--combos">
-            <div class="wardrobe-ai__strip-head">
-              <span class="wardrobe-ai__strip-label">AI pairings</span>
-              <span class="wardrobe-ai__strip-meta">Your pairs only</span>
-            </div>
-            <div class="wardrobe-ai__combos">
-              ${combinations.map((c, i) => renderWardrobeComboCard(c, Math.min(i + 2, 6))).join('')}
-            </div>
-          </div>
-          `
-              : wardrobeProducts.length < 2
-                ? `
-          <p class="wardrobe-ai__empty wardrobe-ai__empty--cta">Add two+ pairs for AI-generated pairings from your closet.</p>
-          `
-                : ''
-          }
 
           ${
             stylePhotos.length && photoTips.length

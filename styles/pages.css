@@ -1651,10 +1651,6 @@
   margin-bottom: var(--space-3);
 }
 
-.wardrobe-ai__strip--combos {
-  margin-bottom: var(--space-2);
-}
-
 .wardrobe-ai__strip-head {
   display: flex;
   align-items: baseline;
@@ -1731,106 +1727,6 @@
 
 .wardrobe-ai__empty--inline {
   padding: var(--space-2) 0;
-}
-
-.wardrobe-ai__empty--cta {
-  font-size: var(--text-xs);
-  margin: 0 0 var(--space-2);
-  padding: var(--space-2) 0;
-  border-top: 1px solid var(--color-border-light);
-}
-
-.wardrobe-ai__combos {
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-3);
-  overflow-x: auto;
-  padding-bottom: var(--space-1);
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-}
-
-.wardrobe-ai-combo {
-  flex: 0 0 auto;
-  width: min(220px, 78vw);
-  scroll-snap-align: start;
-  background: var(--color-bg-warm);
-  border: 1px solid var(--color-border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
-}
-
-.wardrobe-ai-combo__title {
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: var(--weight-bold);
-  color: var(--color-navy);
-  margin: 0 0 var(--space-2);
-  letter-spacing: 0.02em;
-}
-
-.wardrobe-ai-combo__pair {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-bottom: var(--space-2);
-}
-
-.wardrobe-ai-combo__shoe {
-  flex: 1;
-  max-width: 72px;
-  background: var(--color-surface);
-  border-radius: var(--radius-sm);
-  padding: 4px;
-  cursor: pointer;
-  border: 1px solid var(--color-border-light);
-  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.wardrobe-ai-combo__shoe:hover {
-  border-color: var(--color-navy);
-  box-shadow: var(--shadow-xs);
-}
-
-.wardrobe-ai-combo__shoe img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--radius-sm);
-  display: block;
-}
-
-.wardrobe-ai-combo__name {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: var(--weight-semibold);
-  color: var(--color-text-secondary);
-  margin-top: 4px;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.wardrobe-ai-combo__join {
-  font-family: var(--font-heading);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-}
-
-.wardrobe-ai-combo__text {
-  font-family: var(--font-body);
-  font-size: 10px;
-  color: var(--color-text-secondary);
-  line-height: 1.45;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .wardrobe-ai__photo-ai {
