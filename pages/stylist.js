@@ -17,9 +17,17 @@ function renderTrendRail(trends, options) {
   if (!trends || !trends.length) {
     return `<p class="stylist-trends__empty">Trend data will load here.</p>`;
   }
-  const cardClass = slim ? 'trend-card trend-card--slim' : 'trend-card';
+
+  const railClass =
+    'stylist-trends__rail' +
+    (slim || compact ? ' stylist-trends__rail--slim' : '') +
+    (compact ? ' stylist-trends__rail--compact' : '');
+  const cardClass =
+    slim || compact ? 'trend-card trend-card--slim' : 'trend-card';
+  const showHeat = !slim && !compact;
+
   return `
-    <div class="stylist-trends__rail${compact ? ' stylist-trends__rail--compact' : ''}${slim ? ' stylist-trends__rail--slim' : ''}" role="list">
+    <div class="${railClass}" role="list">
       ${trends.map((t, i) => {
         const up = t.momentumPct >= 0;
         const mom = (up ? '+' : '') + t.momentumPct + '%';
@@ -33,15 +41,21 @@ function renderTrendRail(trends, options) {
             </div>
             <h3 class="trend-card__tag">${t.hashtag}</h3>
             <p class="trend-card__snippet">${t.snippet}</p>
-            ${slim ? '' : `
+            ${showHeat ? `
             <div class="trend-card__heat" aria-hidden="true">
               <span class="trend-card__heat-label">Buzz</span>
               <div class="trend-card__heat-track">
                 <span class="trend-card__heat-fill" style="width: ${t.heatScore}%"></span>
               </div>
             </div>
+            ` : `
+            <div class="trend-card__heat trend-card__heat--micro" aria-hidden="true">
+              <div class="trend-card__heat-track">
+                <span class="trend-card__heat-fill" style="width: ${t.heatScore}%"></span>
+              </div>
+            </div>
             `}
-            <p class="trend-card__nb"><span class="trend-card__nb-label">Pick hint</span> ${t.nbAngle}</p>
+            <p class="trend-card__nb"><span class="trend-card__nb-label">Pick</span> ${t.nbAngle}</p>
           </article>
         `;
       }).join('')}
@@ -54,13 +68,12 @@ function renderTrendAnalysisBlock(options) {
   const embedded = options && options.embedded;
   const data = getTrendSignals();
   const trends = data.trends || [];
-  const slim = embedded || compact;
 
   if (compact && !embedded) {
     return `
       <section class="stylist-trends stylist-trends--compact reveal stagger-2" aria-labelledby="stylist-trends-compact-title">
-        <div class="stylist-trends__head">
-          <h2 id="stylist-trends-compact-title" class="stylist-trends__title">Trending now</h2>
+        <div class="stylist-trends__head stylist-trends__head--tight">
+          <h2 id="stylist-trends-compact-title" class="stylist-trends__title stylist-trends__title--sm">Trending now</h2>
           <span class="stylist-trends__meta">${data.refreshedLabel || ''}</span>
         </div>
         ${renderTrendRail(trends.slice(0, 4), { compact: true, slim: true })}
@@ -71,13 +84,13 @@ function renderTrendAnalysisBlock(options) {
   if (embedded) {
     return `
       <section class="stylist-trends stylist-trends--embedded reveal stagger-2" aria-labelledby="stylist-trends-embed-title">
-        <div class="stylist-trends__head stylist-trends__head--embed">
+        <div class="stylist-trends__head stylist-trends__head--embed stylist-trends__head--tight">
           <div>
-            <h2 id="stylist-trends-embed-title" class="stylist-trends__title stylist-trends__title--embed">Trending now</h2>
-            <p class="stylist-trends__subtitle">${data.windowLabel || ''} · ${data.refreshedLabel || ''}</p>
+            <h2 id="stylist-trends-embed-title" class="stylist-trends__title stylist-trends__title--sm">Trending now</h2>
+            <p class="stylist-trends__subtitle stylist-trends__subtitle--inline">${data.windowLabel || ''} · ${data.refreshedLabel || ''}</p>
           </div>
         </div>
-        <p class="stylist-trends__embed-hint">We weigh these movements when we match you to shoes.</p>
+        <p class="stylist-trends__embed-hint">We factor these into your recommendations.</p>
         ${renderTrendRail(trends, { slim: true })}
       </section>
     `;
