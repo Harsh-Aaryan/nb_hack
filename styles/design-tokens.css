@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════
-   NEW BALANCE - DESIGN TOKENS
+   NB HERITAGE — DESIGN TOKENS
    Inspired by 1980s sneaker catalogs + editorial design
    ═══════════════════════════════════════════════════ */
 
@@ -38,6 +38,18 @@
   --color-shadow:      rgba(17, 17, 17, 0.06);
   --color-shadow-dark: rgba(17, 17, 17, 0.12);
   --color-overlay:     rgba(17, 17, 17, 0.65);
+
+  /* Gradient background for page */
+  --color-bg-gradient: linear-gradient(
+    to right,
+    var(--color-bg) 0%,
+    var(--color-bg) 10%,
+    rgba(150, 150, 150, 0.16) 25%,
+    rgba(100, 100, 100, 0.32) 50%,
+    rgba(150, 150, 150, 0.16) 75%,
+    var(--color-bg) 90%,
+    var(--color-bg) 100%
+  );
 
   /* ── Typography ── */
   --font-heading: 'Playfair Display', 'Georgia', serif;
@@ -136,6 +148,12 @@
 }
 
 /* ── Dark Mode (inheritable) ── */
+body {
+  background-image: var(--color-bg-gradient);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     /* Optional future dark mode tokens */
