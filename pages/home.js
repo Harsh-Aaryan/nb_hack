@@ -38,16 +38,6 @@ function renderHome() {
         </div>
       </section>
 
-      <div class="home-marquee">
-        <div class="marquee-track">
-          <div class="home-marquee__text">
-            AI STYLIST <span>•</span> SOCIAL TREND SIGNALS <span>•</span> PERSONALIZED PICKS <span>•</span> WARDROBE INSIGHTS <span>•</span> 
-            AI STYLIST <span>•</span> SOCIAL TREND SIGNALS <span>•</span> PERSONALIZED PICKS <span>•</span> WARDROBE INSIGHTS <span>•</span> 
-            AI STYLIST <span>•</span> SOCIAL TREND SIGNALS <span>•</span> PERSONALIZED PICKS <span>•</span> WARDROBE INSIGHTS <span>•</span> 
-          </div>
-        </div>
-      </div>
-
       <section class="home-section">
         <div class="section-header reveal">
           <div>
